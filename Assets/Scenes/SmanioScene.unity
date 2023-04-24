@@ -4111,6 +4111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d309d8d312efe34a90cc1eaa1ee6141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitTime: 5
   spamSprites:
   - {fileID: 21300000, guid: f09eae8c0ea04254b90c5386a034a225, type: 3}
   - {fileID: 21300000, guid: 9c0d6ec706e01ce448aea81584af092b, type: 3}

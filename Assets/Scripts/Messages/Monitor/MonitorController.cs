@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MonitorController : MonoBehaviour
 {
+    [Header("Timer")]
+    [SerializeField] float waitTime = 5; 
+
     [Header("Sprites")]
     [SerializeField] Sprite[] spamSprites;
     [SerializeField] Sprite missionSprites;
@@ -12,7 +15,7 @@ public class MonitorController : MonoBehaviour
     [SerializeField] SpamMessage spamMessage;
     //[SerializeField] SpamMessage spamMessage;
 
-    private Queue<Sprite> spamQueue = new();
+    private Stack<Sprite> spamQueue = new();
     private Sprite currentSprite;
 
     private void Awake()
@@ -23,12 +26,7 @@ public class MonitorController : MonoBehaviour
 
     void Start()
     {
-        StartSpam();
-    }
-
-    void Update()
-    {
-        
+        StartCoroutine(ChooseMessage());
     }
 
     void OnMessageClosed(MessageType type)
@@ -46,7 +44,7 @@ public class MonitorController : MonoBehaviour
             return;
         }
 
-        currentSprite = spamQueue.Dequeue();
+        currentSprite = spamQueue.Pop();
         spamMessage.SetSprite(currentSprite);
     }
 
@@ -60,12 +58,34 @@ public class MonitorController : MonoBehaviour
         }
         else
         {
-            spamQueue.Enqueue(currentSprite);
+            spamQueue.Push(currentSprite);
         }
 
         currentSprite = randomSprite;
         spamMessage.SetSprite(currentSprite);
 
+    }
+
+    IEnumerator ChooseMessage()
+    {
+        float elapsed = 0;
+        //while (GameManager.gameStatus == GameStatus.Playing)
+        while (true)
+        {
+            if(elapsed >= waitTime)
+            {
+                elapsed = 0;
+                //if (Random.value > 0.5f)
+                    StartSpam();
+                //else
+                //    StartMission();
+
+            }
+            else
+                elapsed += Time.deltaTime;
+
+            yield return null;
+        }
     }
 
     void OnMessageClick(MessageType type)
