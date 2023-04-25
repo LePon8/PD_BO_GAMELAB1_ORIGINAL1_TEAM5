@@ -10,7 +10,7 @@ public class MonitorController : MonoBehaviour
     [SerializeField] float decrementValue = 0.2f;
 
     [Header("Sprites")]
-    [SerializeField] Sprite[] spamSprites;
+    [SerializeField] MissionScriptable[] spamScriptables;
 
     [Header("Ref")]
     [SerializeField] SpamMessage spamMessage;
@@ -19,8 +19,8 @@ public class MonitorController : MonoBehaviour
     [SerializeField] AudioSource source;
     [SerializeField] AudioClip clip;
 
-    private readonly Stack<Sprite> spamQueue = new();
-    private Sprite currentSprite;
+    private readonly Stack<MissionScriptable> spamQueue = new();
+    private MissionScriptable currentSpam;
 
     private readonly Stack<MissionInfo> missionQueue = new();
 
@@ -101,13 +101,13 @@ public class MonitorController : MonoBehaviour
             return;
         }
 
-        currentSprite = spamQueue.Pop();
-        spamMessage.SetSprite(currentSprite);
+        currentSpam = spamQueue.Pop();
+        spamMessage.SetSpam(currentSpam);
     }
 
     void StartSpam()
     {
-        Sprite randomSprite = spamSprites[Random.Range(0, spamSprites.Length)];
+        MissionScriptable randomSprite = spamScriptables[Random.Range(0, spamScriptables.Length)];
 
         if (!spamMessage.gameObject.activeSelf)
         {
@@ -115,11 +115,11 @@ public class MonitorController : MonoBehaviour
         }
         else
         {
-            spamQueue.Push(currentSprite);
+            spamQueue.Push(currentSpam);
         }
 
-        currentSprite = randomSprite;
-        spamMessage.SetSprite(currentSprite);
+        currentSpam = randomSprite;
+        spamMessage.SetSpam(currentSpam);
 
     }
 
