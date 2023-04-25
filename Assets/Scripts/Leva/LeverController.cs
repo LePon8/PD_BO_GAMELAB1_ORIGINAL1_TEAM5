@@ -8,6 +8,8 @@ public class LeverController : Mission
     [SerializeField] Slider sliderHandle;
     [SerializeField] Transform[] positions;
     [SerializeField] float leverSpeed = 5;
+    [SerializeField] AudioSource source;
+    [SerializeField] AudioClip clip;
 
     [HideInInspector] public int CurrentPosition { get; private set; }
 
@@ -37,6 +39,7 @@ public class LeverController : Mission
             yield return null;
         }
         transform.position = position;
+        CommonUtils.ExecuteSound(source, clip);
 
         if (CheckMissionComplete())
         {

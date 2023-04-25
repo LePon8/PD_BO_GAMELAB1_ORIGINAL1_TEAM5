@@ -6,6 +6,8 @@ public class MonitorController : MonoBehaviour
 {
     [Header("Timer")]
     [SerializeField] float waitTime = 5;
+    [SerializeField] float lowerWaitBound = 2;
+    [SerializeField] float decrementValue = 0.2f;
 
     [Header("Sprites")]
     [SerializeField] Sprite[] spamSprites;
@@ -14,6 +16,8 @@ public class MonitorController : MonoBehaviour
     [SerializeField] SpamMessage spamMessage;
     [SerializeField] MissionMessage missionMessage;
     [SerializeField] BossMessage bossMessage;
+    [SerializeField] AudioSource source;
+    [SerializeField] AudioClip clip;
 
     private readonly Stack<Sprite> spamQueue = new();
     private Sprite currentSprite;
@@ -67,6 +71,8 @@ public class MonitorController : MonoBehaviour
         {
             if (elapsed >= waitTime)
             {
+                CommonUtils.ExecuteSound(source, clip);
+                waitTime = Mathf.Max(lowerWaitBound, waitTime - decrementValue);
                 elapsed = 0;
                 if (Random.value > 0.5f || !missionMessage.CheckAvailableMissions(out MissionInfo missionInfo))
                     StartSpam();
@@ -133,18 +139,25 @@ public class MonitorController : MonoBehaviour
 
     void ManageMissionAccept()
     {
-        MissionInfo[] missionInfoArr = missionQueue.ToArray();
-        missionMessage.MissionAccepted(missionInfoArr[^1]);
+        MissionInfo missionInfo = ManageMissionClosed();
+        missionMessage.MissionAccepted(missionInfo);
     }
 
-    void ManageMissionClosed()
+    MissionInfo ManageMissionClosed()
     {
-        missionQueue.Pop();
+        MissionInfo missionInfo = missionQueue.Pop();
 
         if (missionQueue.Count == 0)
         {
             missionMessage.gameObject.SetActive(false);
         }
+        else
+        {
+            MissionInfo[] arr = missionQueue.ToArray();
+            missionMessage.BuildMessage(arr[^1]);
+        }
+
+        return missionInfo;
     }
 
 }

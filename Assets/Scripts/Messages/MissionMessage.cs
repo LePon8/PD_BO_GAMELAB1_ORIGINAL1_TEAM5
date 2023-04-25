@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TMPro;
+using UnityEngine.UI;
 
 public enum MissionType
 {
@@ -27,17 +28,24 @@ public class MissionMessage : Message
     [Header("Refs")]
     [SerializeField] BossMessage bossMessage;
     [SerializeField] TMP_Text missionContent;
+    [SerializeField] Image missionImg;
     [SerializeField] LeverController lever;
-    [SerializeField] TextAsset leverText;
+    [SerializeField] MissionScriptable leverRefs;
     //[SerializeField] KeypadController keypad;
 
     [Header("Failures")]
     [SerializeField] int maxFailures = 3;
-    [SerializeField] float acceptTimer = 30;
-    [SerializeField] float completeMissionTimer = 30;
+    [SerializeField] float missionTimer = 30;
+    [SerializeField] float lowerMissionTimerBound = 15;
+    [SerializeField] float decrementValue = 0.3f;
+
     private int currentFailures = 0;
 
     private TextConstructor textConstructor;
+
+    public delegate void GameOver();
+    public static GameOver OnGameOver;
+
 
     private void Awake()
     {
@@ -97,14 +105,31 @@ public class MissionMessage : Message
         switch (missionInfo.missionType)
         {
             case MissionType.Lever:
-                lever.StartMission(acceptTimer);
-                textConstructor.InsertParam(leverText, missionInfo.param);
+                lever.StartMission(missionTimer);
                 break;
-            //case MissionType.Keypad:
-            //    keypad.StartMission(acceptTimer);
-            //    textConstructor.InsertParam(leverText, missionInfo.param);
-            //    break;
+                //case MissionType.Keypad:
+                //    keypad.StartMission(acceptTimer);
+                //    break;
         }
+
+        BuildMessage(missionInfo);
+
+        missionTimer = Mathf.Max(lowerMissionTimerBound, missionTimer - decrementValue);
+    }
+
+    public void BuildMessage(MissionInfo missionInfo)
+    {
+        switch (missionInfo.missionType)
+        {
+            case MissionType.Lever:
+                missionImg.sprite = leverRefs.missionSprite;
+                textConstructor.InsertParam(leverRefs.missionText, missionInfo.param);
+                break;
+                //case MissionType.Keypad:
+                //    textConstructor.InsertParam(leverText, missionInfo.param);
+                //    break;
+        }
+        
     }
 
     public void MissionAccepted(MissionInfo missionInfo)
@@ -114,24 +139,35 @@ public class MissionMessage : Message
             case MissionType.Lever:
                 lever.StartAcceptMission(missionInfo.param);
                 break;
-            //case MissionType.Keypad:
-            //    break;
+                //case MissionType.Keypad:
+                //    break;
         }
     }
 
     void OnMissionComplete(bool success)
     {
-        base.CloseBtn();
-
         if (!bossMessage.gameObject.activeSelf) bossMessage.gameObject.SetActive(true);
 
         bossMessage.InsertMessage(success, currentFailures);
 
-        if(!success) currentFailures++;
+        if (!success)
+        {
+            base.CloseBtn();
+            currentFailures++;
+            CheckGameEnd();
+        }
     }
 
     private void OnDestroy()
     {
         Mission.OnMissionComplete -= OnMissionComplete;
+    }
+
+    void CheckGameEnd()
+    {
+        if(currentFailures == maxFailures)
+        {
+            OnGameOver?.Invoke();
+        }
     }
 }
