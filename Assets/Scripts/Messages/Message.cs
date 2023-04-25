@@ -12,7 +12,13 @@ public abstract class Message : MonoBehaviour, IMessage
     public delegate void MessageClick(MessageType type);
     public static MessageClick OnMessageClick;
 
-    public abstract void CloseBtn();
+    public virtual void CloseBtn() 
+    {
+        OnMessageClosed?.Invoke(type);
+    }
 
-    public abstract void OnClick();
+    public virtual void OnClick()
+    {
+        OnMessageClick?.Invoke(type);
+    }
 }

@@ -5,7 +5,8 @@ using UnityEngine;
 public enum MessageType
 {
     Spam,
-    Mission
+    Mission,
+    Boss
 }
 
 public interface IMessage
