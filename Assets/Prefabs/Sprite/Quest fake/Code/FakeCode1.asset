@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8ab4f422767b7841ba166810bed1f42, type: 3}
-  m_Name: FakeLeva
+  m_Name: FakeCode1
   m_EditorClassIdentifier: 
-  missionType: 0
-  missionText: {fileID: 4900000, guid: 3cfc9928f009f7943b7196d2ec13a648, type: 3}
-  missionSprite: {fileID: 21300000, guid: 6cda757849a083f4c92280eac20e8596, type: 3}
+  missionType: 1
+  missionText: {fileID: 4900000, guid: 79475a7496740cd44b7932600f8ad6c6, type: 3}
+  missionSprite: {fileID: 21300000, guid: 6e1fad68482c9d64cb2a457a5d88f014, type: 3}

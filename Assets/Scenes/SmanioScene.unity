@@ -1805,11 +1805,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   img: {fileID: 1071342686}
   successSprite:
-  - {fileID: 21300000, guid: e5600378dd761e64d9423790c482bf36, type: 3}
+  - {fileID: 21300000, guid: ab97c81de439ecf4fa7fde90c218d294, type: 3}
   failSprite:
-  - {fileID: 21300000, guid: d931538f7302f7f4b961bedce0c8030d, type: 3}
-  - {fileID: 21300000, guid: 0b7f758138356ca4ba1dac4c389ef425, type: 3}
-  - {fileID: 21300000, guid: 350d9bfe23e3b4f42b450afd655e1687, type: 3}
+  - {fileID: 21300000, guid: e70a12a083ac5c14a97ea2791f7a406c, type: 3}
+  - {fileID: 21300000, guid: 55d13230c9b3eb74fa61b1bd20351725, type: 3}
+  - {fileID: 21300000, guid: a7c1e68c3c02e9a4c811e5658cf1aedf, type: 3}
 --- !u!1 &334835074
 GameObject:
   m_ObjectHideFlags: 0
@@ -8772,7 +8772,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1480996959
 Transform:
   m_ObjectHideFlags: 0
