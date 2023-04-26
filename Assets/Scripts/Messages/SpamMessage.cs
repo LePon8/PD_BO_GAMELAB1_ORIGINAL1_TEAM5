@@ -22,7 +22,7 @@ public class SpamMessage : Message
     void Awake()
     {
         type = MessageType.Spam;
-        textConstructor = new("Gianni", text);
+        textConstructor = new(GameManager.playerName, text);
     }
 
     string BuildFakeParam(MissionType type)

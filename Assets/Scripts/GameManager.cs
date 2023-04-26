@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject startMenu;
-    [SerializeField] GameObject pauseMenu;
+    [SerializeField] int sceneIndex = 0;
 
     public static GameStatus gameStatus;
+    public static string playerName = "";
 
     public enum GameStatus
     {
@@ -21,12 +22,8 @@ public class GameManager : MonoBehaviour
     {
         MissionMessage.OnGameOver += GameOver;
         ArrowController.OnGameOver += GameOver;
-        gameStatus = GameStatus.Playing;
-    }
-
-    void Start()
-    {
-        
+        gameStatus = GameStatus.GameStart;
+        Time.timeScale = 0;
     }
 
     void Update()
@@ -39,15 +36,13 @@ public class GameManager : MonoBehaviour
 
     void Pause()
     {
-        if (pauseMenu.activeSelf)
+        if (gameStatus == GameStatus.GamePause)
         {
             Time.timeScale = 1;
-            pauseMenu.SetActive(false);
             gameStatus = GameStatus.Playing;
             return;
         }
         Time.timeScale = 0;
-        pauseMenu.SetActive(true);
         gameStatus = GameStatus.GamePause;
     }
 
@@ -61,5 +56,23 @@ public class GameManager : MonoBehaviour
     {
         MissionMessage.OnGameOver -= GameOver;
         ArrowController.OnGameOver -= GameOver;
+    }
+
+    public void StartGame()
+    {
+        gameStatus = GameStatus.Playing;
+        Time.timeScale = 1;
+    }
+
+    public void RestartGame()
+    {
+        gameStatus = GameStatus.GameStart;
+        playerName = "";
+        SceneManager.LoadScene(sceneIndex);
+    }
+
+    public static void SetPlayerName(string name)
+    {
+        playerName = name;
     }
 }

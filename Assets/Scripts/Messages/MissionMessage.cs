@@ -51,8 +51,8 @@ public class MissionMessage : Message
     private void Awake()
     {
         Mission.OnMissionComplete += OnMissionComplete;
-        //textConstructor = new(GameManager.playername, missionContent);
-        textConstructor = new("Gianni", missionContent);
+        textConstructor = new(GameManager.playerName, missionContent);
+        //textConstructor = new("Gianni", missionContent);
         type = MessageType.Mission;
     }
 
