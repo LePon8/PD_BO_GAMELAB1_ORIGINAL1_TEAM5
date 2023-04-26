@@ -51,15 +51,16 @@ public class LeverController : Mission
     protected override string BuildParam()
     {
         List<int> possibleValues = new();
+        int sliderValue = positions.Length - 1 - (int)sliderHandle.value;
         for (int i = 0; i < positions.Length; i++)
         {
-            if (i != (int)sliderHandle.value) possibleValues.Add(i);
+            if (i != sliderValue) possibleValues.Add(i);
         }
-        return possibleValues[Random.Range(0, possibleValues.Count)].ToString();
+        return (possibleValues[Random.Range(1, possibleValues.Count)] + 1).ToString();
     }
 
     protected override bool CheckMissionComplete()
     {
-        return acceptMissionCoroutine != null && (int)sliderHandle.value == int.Parse(successParam);
+        return acceptMissionCoroutine != null && positions.Length - (int)sliderHandle.value == int.Parse(successParam);
     }
 }

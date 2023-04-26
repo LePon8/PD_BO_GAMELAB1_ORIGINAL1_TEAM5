@@ -30,10 +30,13 @@ public class KeypadController : Mission
         switch (value)
         {
             case DigitSpecialValues.Enter:
-                source.PlayOneShot(CheckMissionComplete() ? successClip : failClip);
-                OnMissionComplete?.Invoke(CheckMissionComplete());
+                if (acceptMissionCoroutine != null)
+                {
+                    source.PlayOneShot(CheckMissionComplete() ? successClip : failClip);
+                    OnMissionComplete?.Invoke(CheckMissionComplete());
+                    CustomStopCoroutines();
+                }
                 text.text = baseText;
-                CustomStopCoroutines();
                 break;
             case DigitSpecialValues.Canc:
                 ChangeOccurrence("-", false);
@@ -51,9 +54,7 @@ public class KeypadController : Mission
 
         if (equal)
         {
-            if (index < 0)
-                text.text = s.Remove(0, 1).Insert(0, newVal);
-            else
+            if (index >= 0)
                 text.text = s.Remove(index, 1).Insert(index, newVal);
         }
         else
