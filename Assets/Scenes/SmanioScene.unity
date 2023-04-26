@@ -1136,7 +1136,7 @@ RectTransform:
   - {fileID: 1071342685}
   - {fileID: 218566206}
   m_Father: {fileID: 7695652819519294310}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3059,7 +3059,7 @@ RectTransform:
   - {fileID: 52063999}
   - {fileID: 600616274}
   m_Father: {fileID: 7695652819519294310}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3699,6 +3699,54 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &969039808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 969039810}
+  - component: {fileID: 969039809}
+  m_Layer: 0
+  m_Name: CursorManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &969039809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969039808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08759788c23151141b70b27b760dc260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalCursor: {fileID: 2800000, guid: 838daf22b07b57946af1f1913152ec29, type: 3}
+  normalCursorHS: {x: 10, y: 10}
+  handCursor: {fileID: 2800000, guid: 6e93ba6a4da7abd4b89c42fd75833e4b, type: 3}
+  handCursorHS: {x: 20, y: 20}
+--- !u!4 &969039810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969039808}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.03459152, y: 1.5048203, z: -1.6695058}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &993647016
 GameObject:
   m_ObjectHideFlags: 0
@@ -5397,7 +5445,7 @@ Transform:
   - {fileID: 1987389758}
   - {fileID: 2045201813}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1499227648
 GameObject:
@@ -5409,6 +5457,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1499227649}
   - component: {fileID: 1499227650}
+  - component: {fileID: 1499227651}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -5502,6 +5551,51 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1499227651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499227648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 969039809}
+          m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
+          m_MethodName: ToHandCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 969039809}
+          m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
+          m_MethodName: ToNormalCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1521508705
 GameObject:
   m_ObjectHideFlags: 0
@@ -8104,6 +8198,7 @@ GameObject:
   - component: {fileID: 7389817983681655396}
   - component: {fileID: 7389817983681655397}
   - component: {fileID: 7389817983681655398}
+  - component: {fileID: 7389817983681655399}
   m_Layer: 0
   m_Name: Tastierino
   m_TagString: Untagged
@@ -8423,6 +8518,7 @@ GameObject:
   - component: {fileID: 7695652819519294310}
   - component: {fileID: 849873712817477608}
   - component: {fileID: 1474159042028423607}
+  - component: {fileID: 7695652819519294311}
   m_Layer: 0
   m_Name: monitor_screen
   m_TagString: Untagged
@@ -8639,6 +8735,7 @@ GameObject:
   - component: {fileID: 2567425520848351179}
   - component: {fileID: 2745643956397331240}
   - component: {fileID: 4210624363810810179}
+  - component: {fileID: 4664439770467803631}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: Untagged
@@ -8646,6 +8743,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!81 &4664439770467803631
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4664439770467803630}
+  m_Enabled: 1
 --- !u!4 &4672959481645261040
 Transform:
   m_ObjectHideFlags: 0
@@ -9003,7 +9108,6 @@ MonoBehaviour:
   keypad: {fileID: 0}
   digitSpeed: 0.02
   finalHeight: 0.007
-  clip: {fileID: 0}
 --- !u!1 &6482391323053104264
 GameObject:
   m_ObjectHideFlags: 0
@@ -9038,7 +9142,6 @@ MonoBehaviour:
   keypad: {fileID: 0}
   digitSpeed: 0.02
   finalHeight: 0.007
-  clip: {fileID: 0}
 --- !u!4 &6600576445563162612
 Transform:
   m_ObjectHideFlags: 0
@@ -9154,7 +9257,6 @@ MonoBehaviour:
   keypad: {fileID: 0}
   digitSpeed: 0.02
   finalHeight: 0.007
-  clip: {fileID: 0}
 --- !u!4 &6788425507084329255
 Transform:
   m_ObjectHideFlags: 0
@@ -9230,7 +9332,6 @@ MonoBehaviour:
   keypad: {fileID: 0}
   digitSpeed: 0.02
   finalHeight: 0.007
-  clip: {fileID: 0}
 --- !u!4 &6947824028018799936
 Transform:
   m_ObjectHideFlags: 0
@@ -9408,6 +9509,7 @@ MonoBehaviour:
   text: {fileID: 1071637167}
   successClip: {fileID: 0}
   failClip: {fileID: 0}
+  digitClip: {fileID: 0}
 --- !u!82 &7389817983681655398
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9504,6 +9606,51 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7389817983681655399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2717093187133727556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 969039809}
+          m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
+          m_MethodName: ToHandCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 969039809}
+          m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
+          m_MethodName: ToNormalCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!23 &7405114074020800189
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9622,7 +9769,6 @@ MonoBehaviour:
   keypad: {fileID: 0}
   digitSpeed: 0.02
   finalHeight: 0.007
-  clip: {fileID: 0}
 --- !u!23 &7649873015284795624
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9680,7 +9826,6 @@ MonoBehaviour:
   keypad: {fileID: 0}
   digitSpeed: 0.02
   finalHeight: 0.007
-  clip: {fileID: 0}
 --- !u!4 &7695652819519294310
 Transform:
   m_ObjectHideFlags: 0
@@ -9694,11 +9839,56 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 993647017}
-  - {fileID: 765452148}
   - {fileID: 283012903}
+  - {fileID: 765452148}
   m_Father: {fileID: 8348142613445242048}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7695652819519294311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4141359087078909803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 969039809}
+          m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
+          m_MethodName: ToHandCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 969039809}
+          m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
+          m_MethodName: ToNormalCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!23 &7809538303578365962
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10044,7 +10234,6 @@ MonoBehaviour:
   keypad: {fileID: 0}
   digitSpeed: 0.02
   finalHeight: 0.007
-  clip: {fileID: 0}
 --- !u!33 &8346088842458439877
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10068,7 +10257,6 @@ MonoBehaviour:
   keypad: {fileID: 0}
   digitSpeed: 0.02
   finalHeight: 0.007
-  clip: {fileID: 0}
 --- !u!4 &8348142613445242048
 Transform:
   m_ObjectHideFlags: 0
@@ -10153,7 +10341,6 @@ MonoBehaviour:
   keypad: {fileID: 0}
   digitSpeed: 0.02
   finalHeight: 0.007
-  clip: {fileID: 0}
 --- !u!23 &8795232424366993358
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10253,7 +10440,6 @@ MonoBehaviour:
   keypad: {fileID: 0}
   digitSpeed: 0.02
   finalHeight: 0.007
-  clip: {fileID: 0}
 --- !u!23 &8818323996750713082
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10311,7 +10497,6 @@ MonoBehaviour:
   keypad: {fileID: 0}
   digitSpeed: 0.02
   finalHeight: 0.007
-  clip: {fileID: 0}
 --- !u!1 &8827326133601086174
 GameObject:
   m_ObjectHideFlags: 0
@@ -10482,4 +10667,3 @@ MonoBehaviour:
   keypad: {fileID: 0}
   digitSpeed: 0.02
   finalHeight: 0.007
-  clip: {fileID: 0}
