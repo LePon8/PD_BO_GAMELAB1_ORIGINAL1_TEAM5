@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] int sceneIndex = 0;
+    [SerializeField] string sceneName = "SmanioScene";
 
     public static GameStatus gameStatus;
     public static string playerName = "";
@@ -42,8 +42,11 @@ public class GameManager : MonoBehaviour
             gameStatus = GameStatus.Playing;
             return;
         }
-        Time.timeScale = 0;
-        gameStatus = GameStatus.GamePause;
+        else if (gameStatus == GameStatus.Playing)
+        {
+            Time.timeScale = 0;
+            gameStatus = GameStatus.GamePause;
+        }
     }
 
     void GameOver()
@@ -58,7 +61,7 @@ public class GameManager : MonoBehaviour
         ArrowController.OnGameOver -= GameOver;
     }
 
-    public void StartGame()
+    public static void StartGame()
     {
         gameStatus = GameStatus.Playing;
         Time.timeScale = 1;
@@ -68,7 +71,7 @@ public class GameManager : MonoBehaviour
     {
         gameStatus = GameStatus.GameStart;
         playerName = "";
-        SceneManager.LoadScene(sceneIndex);
+        SceneManager.LoadScene(sceneName);
     }
 
     public static void SetPlayerName(string name)

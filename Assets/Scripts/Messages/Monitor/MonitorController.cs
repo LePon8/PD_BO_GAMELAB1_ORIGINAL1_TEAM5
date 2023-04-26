@@ -66,9 +66,12 @@ public class MonitorController : MonoBehaviour
     IEnumerator ChooseMessage()
     {
         float elapsed = 0;
-        //while (GameManager.gameStatus != GameStatus.GameOver)
         while (true)
         {
+            while (GameManager.gameStatus != GameManager.GameStatus.Playing)
+            {
+                yield return null;
+            }
             if (elapsed >= waitTime)
             {
                 CommonUtils.ExecuteSound(source, clip);

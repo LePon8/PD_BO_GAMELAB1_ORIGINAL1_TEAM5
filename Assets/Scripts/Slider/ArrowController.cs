@@ -31,8 +31,6 @@ public class ArrowController : MonoBehaviour
 
         if(localYRotation <= -gameOverRotation || localYRotation >= gameOverRotation)
         {
-            Debug.Log(localYRotation);
-            Debug.Log(gameOverRotation);
             source.Stop();
             OnGameOver?.Invoke();
             return;

@@ -14,17 +14,18 @@ public class WatchController : MonoBehaviour
         if (GameManager.gameStatus != GameManager.GameStatus.Playing) return;
 
         elapsed += Time.deltaTime;
-        text.text = BuildValue(true) + ":" + BuildValue(false);
+        text.text = BuildValue(elapsed, true) + ":" + BuildValue(elapsed, false);
     }
 
-    string BuildValue(bool min)
+    public string BuildValue(float elapsed, bool minutes)
     {
-        int value = min ? (int)(elapsed / 60) : (int)elapsed % 60;
+        int value = minutes ? (int)(elapsed / 60) : (int)elapsed % 60;
         return value < 10 ? $"0{value}" : $"{value}";
     }
     
-    public string GetTimerStr()
+    public string GetTimerStr(out float sortScore)
     {
+        sortScore = elapsed;
         return text.text;
     }
 
