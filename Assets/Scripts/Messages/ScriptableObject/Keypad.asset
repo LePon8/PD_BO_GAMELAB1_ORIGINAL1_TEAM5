@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ab4f422767b7841ba166810bed1f42, type: 3}
   m_Name: Keypad
   m_EditorClassIdentifier: 
-  missionText: {fileID: 0}
-  missionSprite: {fileID: 0}
+  missionType: 1
+  missionText: {fileID: 4900000, guid: 79475a7496740cd44b7932600f8ad6c6, type: 3}
+  missionSprite: {fileID: 21300000, guid: 884e547b35bcde246bf33265242dea31, type: 3}

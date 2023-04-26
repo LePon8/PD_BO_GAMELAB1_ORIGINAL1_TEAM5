@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Mission : MonoBehaviour, IMission
 {
+    [SerializeField] public AudioSource source;
     public float Timer { get; set; }
 
     protected Coroutine missionCoroutine;

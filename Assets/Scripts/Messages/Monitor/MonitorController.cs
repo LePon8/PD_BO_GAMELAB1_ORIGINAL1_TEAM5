@@ -66,7 +66,7 @@ public class MonitorController : MonoBehaviour
     IEnumerator ChooseMessage()
     {
         float elapsed = 0;
-        //while (GameManager.gameStatus == GameStatus.Playing)
+        //while (GameManager.gameStatus != GameStatus.GameOver)
         while (true)
         {
             if (elapsed >= waitTime)

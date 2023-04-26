@@ -8,7 +8,6 @@ public class LeverController : Mission
     [SerializeField] Slider sliderHandle;
     [SerializeField] Transform[] positions;
     [SerializeField] float leverSpeed = 5;
-    [SerializeField] AudioSource source;
     [SerializeField] AudioClip clip;
 
     [HideInInspector] public int CurrentPosition { get; private set; }

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public enum MissionType
 {
     Lever,
-    //Keypad
+    Keypad
 }
 
 public struct MissionInfo
@@ -31,7 +31,8 @@ public class MissionMessage : Message
     [SerializeField] Image missionImg;
     [SerializeField] LeverController lever;
     [SerializeField] MissionScriptable leverRefs;
-    //[SerializeField] KeypadController keypad;
+    [SerializeField] KeypadController keypad;
+    [SerializeField] MissionScriptable keypadRefs;
 
     [Header("Failures")]
     [SerializeField] int maxFailures = 3;
@@ -85,7 +86,7 @@ public class MissionMessage : Message
         return type switch
         {
             MissionType.Lever => lever.InMission(ref param),
-            //MissionType.Keypad => keypad.InMission(ref param),
+            MissionType.Keypad => keypad.InMission(ref param),
             _ => true,
         };
     }
@@ -107,9 +108,9 @@ public class MissionMessage : Message
             case MissionType.Lever:
                 lever.StartMission(missionTimer);
                 break;
-                //case MissionType.Keypad:
-                //    keypad.StartMission(acceptTimer);
-                //    break;
+            case MissionType.Keypad:
+                keypad.StartMission(missionTimer);
+                break;
         }
 
         BuildMessage(missionInfo);
@@ -125,9 +126,10 @@ public class MissionMessage : Message
                 missionImg.sprite = leverRefs.missionSprite;
                 textConstructor.InsertParam(leverRefs.missionText, missionInfo.param);
                 break;
-                //case MissionType.Keypad:
-                //    textConstructor.InsertParam(leverText, missionInfo.param);
-                //    break;
+            case MissionType.Keypad:
+                missionImg.sprite = keypadRefs.missionSprite;
+                textConstructor.InsertParam(keypadRefs.missionText, missionInfo.param);
+                break;
         }
         
     }
@@ -139,8 +141,9 @@ public class MissionMessage : Message
             case MissionType.Lever:
                 lever.StartAcceptMission(missionInfo.param);
                 break;
-                //case MissionType.Keypad:
-                //    break;
+            case MissionType.Keypad:
+                keypad.StartAcceptMission(missionInfo.param);
+                break;
         }
     }
 

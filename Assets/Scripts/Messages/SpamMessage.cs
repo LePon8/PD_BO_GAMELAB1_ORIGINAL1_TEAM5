@@ -9,12 +9,14 @@ public class SpamMessage : Message
     [SerializeField] Image image;
     [SerializeField] TMP_Text text;
 
+    private readonly int keypadLenght = 4;
+
     private TextConstructor textConstructor;
 
     public void SetSpam(MissionScriptable spam)
     {
         image.sprite = spam.missionSprite;
-        if(spam.missionText != null) textConstructor.InsertParam(spam.missionText, BuildParam(spam.missionType));
+        if (spam.missionText != null) textConstructor.InsertParam(spam.missionText, BuildFakeParam(spam.missionType));
     }
 
     void Awake()
@@ -23,19 +25,18 @@ public class SpamMessage : Message
         textConstructor = new("Gianni", text);
     }
 
-    string BuildParam(MissionType type)
+    string BuildFakeParam(MissionType type)
     {
         switch (type)
         {
             case MissionType.Lever:
                 return Random.Range(0, 9).ToString();
-            //case MissionType.Keypad:
-            //    string s = "";
-            //    for (int i = 0; i < 4; i++) s += Random.Range(0, 9);
-            //    return s;
+            case MissionType.Keypad:
+                string s = "";
+                for (int i = 0; i < keypadLenght; i++) s += Random.Range(0, 9);
+                return s;
             default:
                 return "";
         }
     }
-
 }
