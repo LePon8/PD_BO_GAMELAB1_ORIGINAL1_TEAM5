@@ -8,6 +8,7 @@ public class SpamMessage : Message
 {
     [SerializeField] Image image;
     [SerializeField] TMP_Text text;
+    [SerializeField] GameObject btn;
 
     private readonly int keypadLenght = 4;
 
@@ -17,6 +18,8 @@ public class SpamMessage : Message
     {
         image.sprite = spam.missionSprite;
         if (spam.missionText != null) textConstructor.InsertParam(spam.missionText, BuildFakeParam(spam.missionType));
+
+        btn.SetActive(spam.missionText != null);
     }
 
     void Awake()
