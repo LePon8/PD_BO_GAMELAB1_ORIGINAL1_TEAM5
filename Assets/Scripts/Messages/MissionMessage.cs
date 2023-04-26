@@ -52,7 +52,6 @@ public class MissionMessage : Message
     {
         Mission.OnMissionComplete += OnMissionComplete;
         textConstructor = new(GameManager.playerName, missionContent);
-        //textConstructor = new("Gianni", missionContent);
         type = MessageType.Mission;
     }
 
