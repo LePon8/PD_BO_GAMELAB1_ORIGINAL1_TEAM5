@@ -16791,6 +16791,13 @@ MonoBehaviour:
   decrementValue: 0.05
   spamScriptables:
   - {fileID: 11400000, guid: 1a78cb005ffc81c4e9495fb8b37a097d, type: 2}
+  - {fileID: 11400000, guid: 2e4f90ebdf19c2646bd623422cd7cb48, type: 2}
+  - {fileID: 11400000, guid: 7f3878d888133184c860e8acd426aeaf, type: 2}
+  - {fileID: 11400000, guid: 5e3fc041618c2764198da2265216b970, type: 2}
+  - {fileID: 11400000, guid: e349aeda50659704ca6cf9675c83f047, type: 2}
+  - {fileID: 11400000, guid: e781380f3b58a1a43b1cce5bd7ce59ad, type: 2}
+  - {fileID: 11400000, guid: 12464b2c5f8228042b07be82962e8110, type: 2}
+  - {fileID: 11400000, guid: 7ff63079fc4822b41877e3f5fd6518df, type: 2}
   spamMessage: {fileID: 765452149}
   missionMessage: {fileID: 993647021}
   bossMessage: {fileID: 283012908}
