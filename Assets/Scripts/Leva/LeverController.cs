@@ -9,6 +9,7 @@ public class LeverController : Mission
     [SerializeField] Transform[] positions;
     [SerializeField] float leverSpeed = 5;
     [SerializeField] AudioClip clip;
+    [SerializeField] AudioClip successClip;
 
     [HideInInspector] public int CurrentPosition { get; private set; }
 
@@ -42,6 +43,7 @@ public class LeverController : Mission
 
         if (CheckMissionComplete())
         {
+            source.PlayOneShot(successClip);
             OnMissionComplete?.Invoke(true);
             CustomStopCoroutines();
         }

@@ -11,7 +11,6 @@ public class BossMessage : Message
     [Header("Audio")]
     [SerializeField] AudioSource source;
     [SerializeField] AudioClip alarmClip;
-    [SerializeField] AudioClip successClip;
 
     private void Awake()
     {
@@ -22,7 +21,6 @@ public class BossMessage : Message
     {
         if (success)
         {
-            CommonUtils.ExecuteSound(source, successClip);
             img.sprite = successSprite[Random.Range(0, successSprite.Length)];
             return;
         }
