@@ -6792,7 +6792,7 @@ MonoBehaviour:
   keypad: {fileID: 6497367279434212939}
   keypadRefs: {fileID: 11400000, guid: ad1435d389bbb494393ca544f65970eb, type: 2}
   maxFailures: 3
-  missionTimer: 30
+  missionTimer: 10
   lowerMissionTimerBound: 15
   decrementValue: 0.5
   alarm: {fileID: 444718406}
@@ -18900,9 +18900,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d309d8d312efe34a90cc1eaa1ee6141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTime: 10
-  lowerWaitBound: 8
-  decrementValue: 0.05
+  waitTime: 9
+  lowerWaitBound: 2
+  decrementValue: 0.08
   spamScriptables:
   - {fileID: 11400000, guid: 1a78cb005ffc81c4e9495fb8b37a097d, type: 2}
   - {fileID: 11400000, guid: 2e4f90ebdf19c2646bd623422cd7cb48, type: 2}
@@ -19446,7 +19446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa0236dc19166e4a97a734f616dc608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeForceTime: 15
+  changeForceTime: 11
   minForce: -2
   maxForce: 2
   rotationMultiplier: 5
