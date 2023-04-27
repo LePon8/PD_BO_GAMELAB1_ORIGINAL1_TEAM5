@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Pause()
+    public void Pause()
     {
         if (gameStatus == GameStatus.GamePause)
         {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 [System.Serializable]
@@ -17,7 +18,11 @@ public class UIManager : MonoBehaviour
     private readonly string separator = "-";
     [Header("Start")]
     [SerializeField] GameObject startMenu;
+    [Header("Name")]
+    [SerializeField] GameObject nameMenu;
     [SerializeField] TMP_InputField inputField;
+    [Header("Score")]
+    [SerializeField] GameObject scoreMenu;
     [SerializeField] ScoreTexts[] scoreTxts;
     [Header("Pause")]
     [SerializeField] GameObject pauseMenu;
@@ -25,6 +30,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject gameOverMenu;
     [SerializeField] TMP_Text[] gameOverText;
     [SerializeField] WatchController watch;
+    [Header("Audio")]
+    [SerializeField] Slider volumeSlider;
+
+    private GameObject currentMenu;
 
     private void Awake()
     {
@@ -34,6 +43,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         BuildStartMenu();
+        currentMenu = startMenu;
     }
 
     private void Update()
@@ -67,7 +77,12 @@ public class UIManager : MonoBehaviour
 
         GameManager.StartGame();
         GameManager.SetPlayerName(inputField.text);
-        startMenu.SetActive(false);
+        currentMenu.SetActive(false);
+    }
+
+    public void ChangeVolume()
+    {
+        AudioListener.volume = volumeSlider.value;
     }
 
     void BuildEndGame()
@@ -131,6 +146,28 @@ public class UIManager : MonoBehaviour
     {
         BuildPlayerPrefs();
         Application.Quit();
+    }
+
+    public void ToStartMenu()
+    {
+        ChangeMenu(startMenu);
+    }
+
+    public void ToNameMenu()
+    {
+        ChangeMenu(nameMenu);
+    }
+
+    public void ToScoreMenu()
+    {
+        ChangeMenu(scoreMenu);
+    }
+
+    void ChangeMenu(GameObject menu)
+    {
+        currentMenu.SetActive(false);
+        currentMenu = menu;
+        currentMenu.SetActive(true);
     }
 
 }
