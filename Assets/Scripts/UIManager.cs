@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
     private readonly string separator = "-";
     [Header("Start")]
     [SerializeField] GameObject startMenu;
+    [SerializeField] GameObject hiddenText;
+    [SerializeField] GameObject hiddenImg;
     [Header("Name")]
     [SerializeField] GameObject nameMenu;
     [SerializeField] TMP_InputField inputField;
@@ -182,6 +184,16 @@ public class UIManager : MonoBehaviour
         currentMenu.SetActive(false);
         currentMenu = menu;
         currentMenu.SetActive(true);
+    }
+
+    public void ShowHiddenText()
+    {
+        if (!hiddenText.activeSelf) hiddenText.SetActive(true);
+    }
+
+    public void ShowHiddenImg()
+    {
+        if (!hiddenImg.activeSelf) hiddenImg.SetActive(true);
     }
 
 }

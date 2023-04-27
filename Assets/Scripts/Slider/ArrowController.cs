@@ -10,6 +10,7 @@ public class ArrowController : MonoBehaviour
     [SerializeField] float rotationMultiplier = 5;
 
     [SerializeField] AudioSource source;
+    [SerializeField] AudioClip boomClip;
     [SerializeField] float triggerRotation = 23.5f;
     [SerializeField] float gameOverRotation = 46f;
 
@@ -39,6 +40,7 @@ public class ArrowController : MonoBehaviour
         if(localYRotation <= -gameOverRotation || localYRotation >= gameOverRotation)
         {
             source.Stop();
+            CommonUtils.ExecuteSound(source, boomClip);
             OnGameOver?.Invoke();
             return;
         }

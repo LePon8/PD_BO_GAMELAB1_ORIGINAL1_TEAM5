@@ -27,6 +27,7 @@ public class SpamMessage : Message
 
     void Awake()
     {
+        MissionMessage.OnGameOver += DisableSelf;
         type = MessageType.Spam;
         textConstructor = new(GameManager.playerName, text);
     }
@@ -44,5 +45,15 @@ public class SpamMessage : Message
             default:
                 return "";
         }
+    }
+
+    void DisableSelf()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        MissionMessage.OnGameOver -= DisableSelf;
     }
 }
