@@ -55,7 +55,7 @@ public class MonitorController : MonoBehaviour
                 bossMessage.gameObject.SetActive(false);
                 break;
             case MessageType.Mission:
-                //ManageMissionClosed();
+                ManageMissionClosed();
                 break;
             case MessageType.Spam:
                 ManageSpamClosed();

@@ -17,7 +17,10 @@ public class SpamMessage : Message
     public void SetSpam(MissionScriptable spam)
     {
         image.sprite = spam.missionSprite;
-        if (spam.missionText != null) textConstructor.InsertParam(spam.missionText, BuildFakeParam(spam.missionType));
+        if (spam.missionText != null)
+            textConstructor.InsertParam(spam.missionText, BuildFakeParam(spam.missionType));
+        else
+            text.text = "";
 
         btn.SetActive(spam.missionText != null);
     }
