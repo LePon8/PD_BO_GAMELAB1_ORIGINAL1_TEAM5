@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionType: 1
   missionText: {fileID: 4900000, guid: 79475a7496740cd44b7932600f8ad6c6, type: 3}
-  missionSprite: {fileID: 21300000, guid: 884e547b35bcde246bf33265242dea31, type: 3}
+  missionSprite: {fileID: 21300000, guid: 76eddb6f1ac93d74fa7afaabe7237d16, type: 3}
