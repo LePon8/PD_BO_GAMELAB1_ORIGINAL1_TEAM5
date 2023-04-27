@@ -6792,8 +6792,8 @@ MonoBehaviour:
   keypad: {fileID: 6497367279434212939}
   keypadRefs: {fileID: 11400000, guid: ad1435d389bbb494393ca544f65970eb, type: 2}
   maxFailures: 3
-  missionTimer: 10
-  lowerMissionTimerBound: 15
+  missionTimer: 15
+  lowerMissionTimerBound: 9
   decrementValue: 0.5
   alarm: {fileID: 444718406}
 --- !u!1 &996364021
