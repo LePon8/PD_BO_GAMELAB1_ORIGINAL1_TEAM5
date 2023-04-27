@@ -8,6 +8,10 @@ public class BossMessage : Message
     [SerializeField] Image img;
     [SerializeField] Sprite[] successSprite;
     [SerializeField] Sprite[] failSprite;
+    [Header("Audio")]
+    [SerializeField] AudioSource source;
+    [SerializeField] AudioClip alarmClip;
+    [SerializeField] AudioClip successClip;
 
     private void Awake()
     {
@@ -18,9 +22,11 @@ public class BossMessage : Message
     {
         if (success)
         {
+            CommonUtils.ExecuteSound(source, successClip);
             img.sprite = successSprite[Random.Range(0, successSprite.Length)];
             return;
         }
+        CommonUtils.ExecuteSound(source, alarmClip);
         img.sprite = failSprite[currentFailure];
     }
 }

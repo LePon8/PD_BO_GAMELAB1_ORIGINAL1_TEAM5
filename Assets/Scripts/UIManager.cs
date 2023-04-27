@@ -31,7 +31,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] TMP_Text[] gameOverText;
     [SerializeField] WatchController watch;
     [Header("Audio")]
-    [SerializeField] Slider volumeSlider;
+    [SerializeField] Slider startMenuSlider;
+    [SerializeField] Slider pauseMenuSlider;
 
     private GameObject currentMenu;
 
@@ -44,6 +45,8 @@ public class UIManager : MonoBehaviour
     {
         BuildStartMenu();
         currentMenu = startMenu;
+        startMenuSlider.value = AudioListener.volume;
+        pauseMenuSlider.value = AudioListener.volume;
     }
 
     private void Update()
@@ -80,9 +83,20 @@ public class UIManager : MonoBehaviour
         currentMenu.SetActive(false);
     }
 
-    public void ChangeVolume()
+    public void ChangeVolume(bool isStartMenu)
     {
-        AudioListener.volume = volumeSlider.value;
+        float value;
+        if (isStartMenu)
+        {
+            value = startMenuSlider.value;
+            pauseMenuSlider.value = value;
+        }
+        else
+        {
+            value = pauseMenuSlider.value;
+            startMenuSlider.value = value;
+        }
+        AudioListener.volume = value;
     }
 
     void BuildEndGame()

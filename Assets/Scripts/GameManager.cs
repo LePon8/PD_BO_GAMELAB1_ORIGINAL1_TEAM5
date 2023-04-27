@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] AudioSource source;
     [SerializeField] string sceneName = "SmanioScene";
 
     public static GameStatus gameStatus;
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         Debug.Log("you lost");
+        source.Play();
         gameStatus = GameStatus.GameOver;
     }
 

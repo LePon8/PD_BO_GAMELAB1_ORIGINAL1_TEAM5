@@ -27,7 +27,14 @@ public class ArrowController : MonoBehaviour
         float localYRotation = transform.localRotation.eulerAngles.y;
         if (localYRotation > 180) localYRotation -= 360;
 
-        if ((localYRotation <= -triggerRotation || localYRotation >= triggerRotation) && !source.isPlaying) source.Play();
+        if ((localYRotation <= -triggerRotation || localYRotation >= triggerRotation))
+        {
+            if (!source.isPlaying) source.Play();
+        }
+        else
+        {
+            if (source.isPlaying) source.Stop();
+        }
 
         if(localYRotation <= -gameOverRotation || localYRotation >= gameOverRotation)
         {
