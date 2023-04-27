@@ -13,6 +13,8 @@ public static class CommonUtils
     public const string PLAYERNAMESKEY = "PLAYERNAMESKEY";
     public const string PLAYERSCORESKEY = "PLAYERSCORESSKEY";
 
+    public const string alarmBool = "AlarmOn";
+
     public static void ExecuteSound(AudioSource source, AudioClip clip)
     {
         if (source != null && clip != null) source.PlayOneShot(clip);

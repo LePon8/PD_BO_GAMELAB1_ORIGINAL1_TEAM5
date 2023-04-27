@@ -40,6 +40,9 @@ public class MissionMessage : Message
     [SerializeField] float lowerMissionTimerBound = 15;
     [SerializeField] float decrementValue = 0.3f;
 
+    [Header("Animation")]
+    [SerializeField] AlarmController alarm;
+
     private int currentFailures = 0;
 
     private TextConstructor textConstructor;
@@ -92,7 +95,8 @@ public class MissionMessage : Message
 
     public override void CloseBtn()
     {
-        OnMissionComplete(false);
+        //OnMissionComplete(false);
+        OnMissionClosed();
     }
 
     public override void OnClick()
@@ -130,7 +134,7 @@ public class MissionMessage : Message
                 textConstructor.InsertParam(keypadRefs.missionText, missionInfo.param);
                 break;
         }
-        
+
     }
 
     public void MissionAccepted(MissionInfo missionInfo)
@@ -154,10 +158,23 @@ public class MissionMessage : Message
 
         if (!success)
         {
-            base.CloseBtn();
+            //base.CloseBtn();
             currentFailures++;
             CheckGameEnd();
+            alarm.StartAlarm();
         }
+    }
+
+    void OnMissionClosed()
+    {
+        if (!bossMessage.gameObject.activeSelf) bossMessage.gameObject.SetActive(true);
+
+        bossMessage.InsertMessage(false, currentFailures);
+
+        base.CloseBtn();
+        currentFailures++;
+        CheckGameEnd();
+        alarm.StartAlarm();
     }
 
     private void OnDestroy()
@@ -167,7 +184,7 @@ public class MissionMessage : Message
 
     void CheckGameEnd()
     {
-        if(currentFailures == maxFailures)
+        if (currentFailures == maxFailures)
         {
             OnGameOver?.Invoke();
         }
